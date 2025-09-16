@@ -1,17 +1,27 @@
-const express = require('express');
-const path = require('path');
+const express = require("express");
+const path = require("path");
 const app = express();
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
-// Statik fayllarni berish
-app.use(express.static(path.join(__dirname, 'public')));
+// Static fayllar uchun
+app.use(express.static(path.join(__dirname, "public")));
 
-// Root yo‘l (homepage)
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// Bosh sahifa
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+// Admin sahifa
+app.get("/admin", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "admin.html"));
+});
+
+// Parent sahifa
+app.get("/parent", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "parent.html"));
 });
 
 // Serverni ishga tushirish
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
 });
