@@ -1,0 +1,76 @@
+/* Umumiy sahifa dizayni */
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #e0f7fa, #e1bee7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Login oynasi */
+.login-box {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  width: 350px;
+  text-align: center;
+}
+
+.login-box h2 {
+  margin-bottom: 20px;
+  color: #4a148c;
+}
+
+/* Input guruhlari */
+.input-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.input-group label {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.input-group input:focus {
+  border-color: #4a148c;
+  outline: none;
+}
+
+/* Tugma dizayni */
+.btn {
+  width: 100%;
+  padding: 12px;
+  background: #4a148c;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #6a1b9a;
+}
+
+/* Izoh */
+.note {
+  margin-top: 15px;
+  font-size: 12px;
+  color: #555;
+}

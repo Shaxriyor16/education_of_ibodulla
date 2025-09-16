@@ -1,0 +1,14 @@
+{
+  "name": "my-server",
+  "version": "1.0.0",
+  "description": "Simple Express server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "author": "",
+  "license": "ISC"
+}

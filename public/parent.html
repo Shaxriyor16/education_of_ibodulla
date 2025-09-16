@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title>Ota-ona Panel - Token Access</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body { margin: 0; font-family: "Segoe UI", sans-serif; background: #f5f6fa; display: flex; justify-content: center; }
+    .content { padding: 20px; flex: 1; max-width: 900px; }
+    header { background: #fff; padding: 15px 25px; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border-radius: 10px; margin-bottom: 20px; }
+    header h1 { font-size: 20px; color: #2e7d32; margin: 0; }
+    .card { background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 15px; }
+    .choice { display: inline-block; padding: 6px 12px; margin: 0 4px; border-radius: 50px; border: 1px solid #ccc; background: #f1f1f1; cursor: default; transition: 0.2s; }
+    .choice.active { background: #2e7d32; color: white; border-color: #2e7d32; }
+    .input-percent { padding: 6px; border-radius: 6px; border: 1px solid #ccc; width: 60px; text-align: center; background:#f1f1f1; }
+    footer { position: fixed; bottom: 0; left: 0; width: 100%; }
+    marquee { background:#1b5e20; color:white; padding:10px; font-size:16px; font-weight:bold; }
+    #tokenInputSection { margin-top: 50px; text-align: center; }
+    #tokenInput { padding: 8px; width: 200px; border-radius: 6px; border: 1px solid #ccc; }
+    #submitToken, #logoutBtn { padding: 8px 15px; border-radius: 6px; border: none; background:#2e7d32; color:white; cursor:pointer; margin-left: 8px; }
+    #logoutBtn { background:#c62828; margin-top:15px; }
+  </style>
+</head>
+<body>
+
+  <div class="content">
+    <header>
+      <h1>Ota-ona Panel</h1>
+    </header>
+
+    <div id="tokenInputSection">
+      <input type="text" id="tokenInput" placeholder="Tokenni kiriting">
+      <button id="submitToken">Kirish</button>
+      <p id="tokenError" style="color:red; margin-top:10px;"></p>
+    </div>
+
+    <div id="sectionContent"></div>
+  </div>
+
+  <footer>
+    <marquee behavior="scroll" direction="left" scrollamount="6">
+      <i class="fab fa-instagram" style="color:#e1306c; font-size:20px; margin-right:8px;"></i>
+      education_of_ibodulla ✨
+    </marquee>
+  </footer>
+
+  <script>
+    const students = [
+      { token: 'token0', name: "Humoyun Abdumominov", coins: 37690, davomat: true, odob: true, faollik: false, homework: 90 },
+      { token: 'token1', name: "Abdulatif Anorov", coins: 4760, davomat: true, odob: true, faollik: true, homework: 100 },
+      { token: 'token2', name: "Bahodir Izatullayev", coins: 7270, davomat: false, odob: true, faollik: true, homework: 80 },
+      { token: 'token3', name: "Sino Raximov", coins: 6620, davomat: true, odob: false, faollik: true, homework: 95 },
+      { token: 'token4', name: "Javdat Ziyayev", coins: 7735, davomat: true, odob: true, faollik: true, homework: 85 }
+    ];
+
+    document.getElementById('submitToken').onclick = ()=>{
+      const token = document.getElementById('tokenInput').value.trim();
+      const student = students.find(s=>s.token===token);
+      const errorEl = document.getElementById('tokenError');
+      const contentEl = document.getElementById('sectionContent');
+      if(!student){
+        errorEl.textContent = 'Token noto‘g‘ri yoki farzand topilmadi.';
+        contentEl.innerHTML = '';
+        return;
+      }
+      errorEl.textContent = '';
+      renderStudent(student);
+    };
+
+    function renderStudent(student){
+      const container = document.getElementById('sectionContent');
+      let html = `<div class="card"><h2>${student.name}</h2></div>`;
+
+      // Davomat
+      html += `<div class="card"><h3>📋 Davomat</h3>
+      <span class='choice ${student.davomat?'active':''}'>✔</span>
+      <span class='choice ${!student.davomat?'active':''}'>❌</span></div>`;
+
+      // Coin
+      html += `<div class="card"><h3>💰 Coin: ${student.coins}</h3></div>`;
+
+      // Odob & Faollik
+      html += `<div class="card"><h3>⭐ Odob-axloq & Faollik</h3>
+      <span class='choice ${student.odob?'active':''}'>Odob ✔</span>
+      <span class='choice ${!student.odob?'active':''}'>Odob ❌</span>
+      <span class='choice ${student.faollik?'active':''}'>Faollik ✔</span>
+      <span class='choice ${!student.faollik?'active':''}'>Faollik ❌</span>
+      </div>`;
+
+      // Uyga vazifalar
+      html += `<div class="card"><h3>📘 Uyga vazifalar (%)</h3>
+      <input type='number' class='input-percent' value='${student.homework}' readonly></div>`;
+
+      // Chiqish tugmasi
+      html += `<button id="logoutBtn" onclick="logout()">Chiqish</button>`;
+
+      container.innerHTML = html;
+      document.getElementById('tokenInputSection').style.display = 'none';
+    }
+
+    function logout(){
+      document.getElementById('sectionContent').innerHTML = '';
+      document.getElementById('tokenInputSection').style.display = 'block';
+      document.getElementById('tokenInput').value = '';
+    }
+  </script>
+</body>
+</html>

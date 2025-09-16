@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Farzand Tokenlari</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background:#f5f6fa; padding:20px; }
+    table { width:100%; border-collapse: collapse; background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+    th, td { padding:12px; text-align:left; border-bottom:1px solid #eee; }
+    th { background:#fafafa; }
+  </style>
+</head>
+<body>
+
+  <h1>Farzand Tokenlari</h1>
+  <p>Har bir farzand uchun tokenni ko‘rib, ota-onaga yuborishingiz mumkin.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Ism Familiya</th>
+        <th>Token</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody id="tokenTable"></tbody>
+  </table>
+
+  <script>
+    const students = [
+      { id:0, name: "Humoyun Abdumominov", token: 'token0' },
+      { id:1, name: "Abdulatif Anorov", token: 'token1' },
+      { id:2, name: "Bahodir Izatullayev", token: 'token2' },
+      { id:3, name: "Sino Raximov", token: 'token3' },
+      { id:4, name: "Javdat Ziyayev", token: 'token4' }
+    ];
+
+    const tableBody = document.getElementById('tokenTable');
+    students.forEach((s,i)=>{
+      const link = `https://yourwebsite.com/parents.html?token=${s.token}`;
+      const row = document.createElement('tr');
+      row.innerHTML = `<td>${i+1}</td><td>${s.name}</td><td>${s.token}</td><td><a href='${link}' target='_blank'>${link}</a></td>`;
+      tableBody.appendChild(row);
+    });
+  </script>
+
+</body>
+</html>
